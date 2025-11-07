@@ -106,6 +106,11 @@ int cpu_x86_support_mca_broadcast(CPUX86State *env)
     return 0;
 }
 
+
+void helper_debugbreak(CPUX86State *env) {
+    cpu_breakpoint_insert(env_cpu(env), env->eip, BP_GDB, NULL);
+}
+
 /***********************************************************/
 /* x86 mmu */
 /* XXX: add PGE support */

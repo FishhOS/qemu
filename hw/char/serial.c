@@ -57,6 +57,11 @@
 #define UART_IIR_FENF   0x80    /* Fifo enabled, but not functioning */
 #define UART_IIR_FE     0xC0    /* Fifo enabled */
 
+#define DEBUG_CMD_MEMDUMP   0xD0
+#define DEBUG_CMD_REGDUMP   0xD1
+#define DEBUG_CMD_BREAK     0xD2
+
+
 /*
  * These are the definitions for the Modem Control Register
  */
@@ -142,6 +147,15 @@ static void serial_update_irq(SerialState *s)
         qemu_irq_raise(s->irq);
     } else {
         qemu_irq_lower(s->irq);
+    }
+}
+
+static void debug_handle_command(uint8_t cmd) {
+    switch(cmd) {
+        case DEBUG_CMD_MEMDUMP:
+            break;
+        case DEBUG_CMD_REGDUMP:
+            break;
     }
 }
 
